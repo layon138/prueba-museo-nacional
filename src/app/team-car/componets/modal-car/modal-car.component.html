@@ -1,0 +1,103 @@
+<div  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-4/12 my-6 mx-auto max-w-6xl">
+      <!--content-->
+      <div class="border-0 px-6 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <form class="space-y-6" [formGroup]="carRegisterForm">
+            <div>
+              <label for="name" class="block text-sm font-medium leading-6 text-secondary">Nombre del propietario</label>
+              <div class="mt-2">
+                <input formControlName="name"  id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              </div>
+              @if ( carRegisterForm.get('name')?.hasError('required') &&     this.carRegisterForm.get('name')?.touched) {
+                <div class="text-sm font-medium text-likes pt-1" >
+                    Escriba un correo válido.
+                </div>
+              }
+            </div>
+    
+      
+            <div>
+              <div class="flex items-center justify-between">
+                <label for="description" class="block text-sm font-medium leading-6 text-secondary">description</label>
+              </div>
+              <div class="mt-2">
+                <input formControlName="description"  id="description" name="description" type="text" required class="block w-full rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              </div>
+              @if ((carRegisterForm.get('description')?.hasError('pattern') || carRegisterForm.get('description')?.hasError('required')) &&   this.carRegisterForm.get('description')?.touched) {
+                <div class="text-sm font-medium text-likes pt-1">
+                    La contraseña debe tener la
+                </div>
+              }
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between">
+                  <label for="brand" class="block text-sm font-medium leading-6 text-secondary">Marca del Vehiculo</label>
+                </div>
+                <div class="mt-2">
+                  <input formControlName="brand"  id="brand" name="brand" type="text" required class="block w-full rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+                @if ((carRegisterForm.get('brand')?.hasError('pattern') || carRegisterForm.get('brand')?.hasError('required')) &&   this.carRegisterForm.get('brand')?.touched) {
+                  <div class="text-sm font-medium text-likes pt-1">
+                      La contraseña debe tener la
+                  </div>
+                }
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between">
+                  <label for="staffInCharge" class="block text-sm font-medium leading-6 text-secondary">Personal Encargado</label>
+                </div>
+                <div class="mt-2">
+                  <angular2-multiselect formControlName="staffInCharge" [(ngModel)]="selectedItems"  [data]="brandList" formControlName="brand"
+                  (onSelect)="onItemSelect($event)" 
+                  ></angular2-multiselect>
+                </div>
+                @if ((carRegisterForm.get('staffInCharge')?.hasError('pattern') || carRegisterForm.get('staffInCharge')?.hasError('required')) &&   this.carRegisterForm.get('staffInCharge')?.touched) {
+                  <div class="text-sm font-medium text-likes pt-1">
+                      La marca debe ser valida
+                  </div>
+                }
+              </div>
+
+              <h4 class="text-xl font-bold tracking-tight text-gray-900">Acciones</h4>
+
+              <button  type="submit" (click)="addAction()" class="flex  justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Añadir Accion</button>
+  
+
+              @for (rowControl of rowsControls; let rowIndex = $index; track rowIndex) {
+                <div class="row mt-2 align-items-end" [formGroup]="getFormGroupAtIndex(rowIndex)">
+                  <div>
+                    <label for="name" class="block text-sm font-medium leading-6 text-secondary">Nombre de la accion</label>
+                    <div class="mt-2">
+                      <input formControlName="name"  id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                    @if ( getFormGroupAtIndex(rowIndex).get('name')?.hasError('required') &&    getFormGroupAtIndex(rowIndex).get('name')?.touched) {
+                      <div class="text-sm font-medium text-likes pt-1" >
+                          Escriba un correo válido.
+                      </div>
+                    }
+                  </div>
+
+                    <div>
+                      <label for="name" class="block text-sm font-medium leading-6 text-secondary">Descripcion de la Accion</label>
+                      <div class="mt-2">
+                        <input formControlName="description"  id="description" name="description" type="text" autocomplete="description" required class="block w-full rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      </div>
+                      @if ( getFormGroupAtIndex(rowIndex).get('description')?.hasError('required') &&    getFormGroupAtIndex(rowIndex).get('description')?.touched) {
+                        <div class="text-sm font-medium text-likes pt-1" >
+                            Escriba un correo válido.
+                        </div>
+                      }
+                    </div>
+            
+                </div>
+              }
+            <div>
+              <button  type="submit" (click)="saveData()" class="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ingresar</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  <div  class="opacity-60 fixed inset-0 z-40 bg-red"></div>

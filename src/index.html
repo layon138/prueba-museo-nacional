@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TestMuseoNacional</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+  href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css"
+  rel="stylesheet"
+/>
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+  <script>
+    new TomSelect('#select-role', {
+      maxItems: 3,
+    });
+  </script>
+</body>
+</html>
