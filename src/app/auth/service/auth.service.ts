@@ -8,12 +8,12 @@ import { RequestAuthUser, ResponseAuthUser } from '../models/auth.model';
   providedIn: 'root'
 })
 export class AuthService implements AuthProvider {
-
+  private urlAuth='http://localhost:3000/'
   constructor(private httpService:HttpClient) { }
   
   public  async validateUser(user: RequestAuthUser): Promise<ResponseAuthUser> {
     const response =await firstValueFrom( this.httpService
-      .post<any>('http://localhost:3000/auth', user, {
+      .post<any>(this.urlAuth+'auth', user, {
       }))
 
     return  response;

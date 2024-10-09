@@ -16,12 +16,11 @@ export class LoginComponent {
   constructor(private authService:AuthService,private router:Router) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required,Validators.email]),
-      password: new FormControl('',[ Validators.required,Validators.minLength(8),]),
+      password: new FormControl('',[ Validators.required,Validators.minLength(5),]),
     });
   }
 
   async authValidation(){
-    console.log(this.registerForm)
     if(this.registerForm.valid){
       const res=await this.authService.validateUser(this.registerForm.value);
       if(res.status==='success'){

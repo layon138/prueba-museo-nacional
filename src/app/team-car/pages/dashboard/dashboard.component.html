@@ -1,7 +1,8 @@
 <div>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex gap-4">
         <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-        <button  type="submit" (click)="openModal()" class="flex  justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Crear Nueva Accion</button>
+        <button  type="submit" (click)="openModal()" class="flex  justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >Crear Nuevo vehiculo</button>
       </div>
    
   </div>
@@ -16,14 +17,12 @@
                     Descripción
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    Persona Encargada
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Marca
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
+
             </tr>
         </thead>
         <tbody>
@@ -36,14 +35,12 @@
                         {{vehicule.description}}
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{convertArray(vehicule.staffInCharge)}}
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        {{convertArray(vehicule.brand)}}
                     </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                    </td>
+         
                 </tr>
             }
           
@@ -52,5 +49,5 @@
 </div>
 
 @if (showModal) {
-    <app-modal-car> </app-modal-car>
+    <app-modal-car (closeModal)="closeModal($event)"> </app-modal-car>
 }

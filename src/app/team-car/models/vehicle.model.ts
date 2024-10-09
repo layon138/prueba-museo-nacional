@@ -1,8 +1,8 @@
 export interface Vehicle{
     name: string;
     description: string;
-    brand: string[];
-    staffInCharge: string[];
+    brand: Brand[];
+    staffInCharge: StaffInCharge[];
     actions: Action[];
 }
 
@@ -10,6 +10,23 @@ export interface Action{
     name: string;
     description: string;
     listAffected: string[];
+}
+
+export interface Brand{
+    id: string;
+    itemName: string;
+}
+
+export interface StaffInCharge{
+    id: string;
+    itemName: string;
+}
+
+export interface Affectations{
+    id: string;
+    itemName: string;
+    percentage: number;
+    description: string;
 }
 
 export interface ResponseAddVehicle{
@@ -29,7 +46,7 @@ export interface ResponseGetVehicules{
 }
 
 export interface ResponseGetBrands{
-    listBrands: string[];
+    listBrands: Brand[];
 }
 
 

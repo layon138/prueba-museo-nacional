@@ -27,7 +27,7 @@ export class AuthFakeService  implements AuthProvider {
     }
 
 
-    public saveUser() {
-        throw new Error('Method not implemented.');
-    }
+    public saveUser(user:string){
+        localStorage.setItem("user",user)
+      }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { VehiculeProvider } from '../providers/vehicule.provider';
 import { Vehicle, ResponseAddVehicle, ResponseDeleteVehicle, ResponseUpdateVehicle, ResponseGetVehicules, ResponseGetBrands } from '../models/vehicle.model';
 import { BehaviorSubject } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class VehiculeFakeService  implements VehiculeProvider{
     {
       name: "Model X",
       description: "A high-performance electric SUV with advanced features.",
-      brand: ["Tesla"],
-      staffInCharge: ["Alice Johnson", "Bob Smith"],
+      brand: [{"id":uuidv4(),"itemName":"Tesla"}],
+      staffInCharge: [{"id":uuidv4(),"itemName":"Alice Johnson"}, {"id":uuidv4(),"itemName":"Bob Smith"},],
       actions: [
           {
               name: "Inspect",
@@ -44,9 +45,9 @@ export class VehiculeFakeService  implements VehiculeProvider{
   public  getBrands(): Promise<ResponseGetBrands> {
     const mockGetBrands: ResponseGetBrands = {
       listBrands:[
-        "Tesla",
-        "toyota",
-        "Nisan",
+        {"id":uuidv4(),"itemName":"Tesla"},
+        {"id":uuidv4(),"itemName":"toyota"},
+        {"id":uuidv4(),"itemName":"Nisan"},
       ]
     };
 

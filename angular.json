@@ -50,6 +50,14 @@
               ],
               "outputHashing": "all"
             },
+            "fake": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/app.provider.ts",
+                  "with": "src/app/app.provider.fake.ts"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -63,6 +71,9 @@
           "configurations": {
             "production": {
               "buildTarget": "test-museo-nacional:build:production"
+            },
+            "fake": {
+              "buildTarget": "test-museo-nacional:build:fake"
             },
             "development": {
               "buildTarget": "test-museo-nacional:build:development"

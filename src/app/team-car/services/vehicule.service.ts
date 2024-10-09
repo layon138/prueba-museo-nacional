@@ -8,7 +8,7 @@ import { ResponseAddVehicle, ResponseDeleteVehicle, ResponseGetBrands, ResponseG
   providedIn: 'root'
 })
 export class VehiculeService  implements VehiculeProvider{
-
+  private urlVehicule='http://localhost:3000/'
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
   constructor(private httpService:HttpClient) { }
@@ -19,9 +19,10 @@ export class VehiculeService  implements VehiculeProvider{
   public  getVehicules(): Promise<ResponseGetVehicules> {
     throw new Error('Method not implemented.');
   }
+
   public  async addVehicle(vehicule: Vehicle): Promise<ResponseAddVehicle> {
     const response =await firstValueFrom( this.httpService
-      .post<any>('http://localhost:3000/addVehicle', {}, {
+      .post<any>(this.urlVehicule+'addVehicle', {}, {
       }))
 
     return  response;

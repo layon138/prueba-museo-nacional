@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalCarComponent } from '../../componets/modal-car/modal-car.component';
 import { VehiculeService } from '../../services/vehicule.service';
-import { Vehicle } from '../../models/vehicle.model';
+import { Brand, StaffInCharge, Vehicle } from '../../models/vehicle.model';
 
 
 @Component({
@@ -16,7 +16,6 @@ import { Vehicle } from '../../models/vehicle.model';
 export class DashboardComponent {
   public showModal=false
   public listVehicules:Vehicle[]=[];
-
 
   constructor(private vehiculeService: VehiculeService ){
 
@@ -39,5 +38,16 @@ export class DashboardComponent {
   openModal(){
     this.showModal=!this.showModal;
   }
+
+  closeModal(value:boolean){
+    this.showModal=value;
+
+  }
+
+  convertArray(brands:Brand[]|StaffInCharge[]){
+    return brands.map(x => x.itemName )
+  }
+
+
 
 }
