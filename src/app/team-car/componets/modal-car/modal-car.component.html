@@ -69,6 +69,8 @@
                 <div class="mt-2" >
                   @if (staffInChargeList.length > 0) {
                     <angular2-multiselect 
+                    id="dropdownStaffInChargeSettings" 
+                    class="dropdownStaffInChargeSettings"
                     [settings]="dropdownStaffInChargeSettings"  formControlName="staffInCharge" [data]="staffInChargeList" 
                     (onSelect)="onItemSelect($event)" 
                     ></angular2-multiselect>
@@ -87,7 +89,7 @@
              
 
               @for (rowControl of rowsControls; let rowIndex = $index; track rowIndex) {
-                <div class="row mt-2 align-items-end" [formGroup]="getFormGroupAtIndex(rowIndex)">
+                <div  class=" bg-gray-50 pl-2 pt-2 pb-2 pr-2 row mt-2 align-items-end" [formGroup]="getFormGroupAtIndex(rowIndex)">
                   <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-secondary">Nombre de la accion</label>
                     <div class="mt-2">
@@ -134,12 +136,18 @@
                       @if (getContnrol(rowIndex).length > 0) {
                         @for (item of getContnrol(rowIndex); let rowIndex2 = $index; track rowIndex2) {
                           <div  [formGroup]="getFormGroupAtIndex2(rowIndex,rowIndex2)">
-                            <div class="flex mt-2 justify-between align-middle">
-                              <label for="">{{item.get('itemName')?.value}}</label>
-                              <label for="">{{item.get('description')?.value}}</label>
-                              <input type="text"  required 
-                              formControlName="percentage"
-                              class="block rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <div class="bg-white flex mt-2 justify-between content-center items-center">
+                              <label for=""><span class="text-primary">Parte: </span>{{item.get('itemName')?.value}}</label>
+                              <label for=""><span class="text-primary">Descrip: </span> {{item.get('description')?.value}}</label>
+                              <div class="bg-white flex content-center items-center">
+                                <input type="text"  required 
+                                formControlName="percentage"
+                                class="block w-min rounded-md border-0 px-1.5 py-1.5 text-secondary shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <div>
+                              %
+                            </div> 
+                              </div>
+                          
                             </div>
                           </div>
                           @if (getFormGroupAtIndex2(rowIndex,rowIndex2).get('percentage')?.hasError('pattern') &&    getFormGroupAtIndex2(rowIndex,rowIndex2).get('percentage')?.touched) {
@@ -151,7 +159,7 @@
                       }
 
 
-                     <button  type="submit" (click)="deleteAction(rowIndex)" class="flex mt-4 justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Remover Accion</button>
+                     <button  type="submit" (click)="deleteAction(rowIndex)" class="flex mt-4 justify-center rounded-md bg-transparent text-likes px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Remover Accion</button>
   
                     
                     </div>

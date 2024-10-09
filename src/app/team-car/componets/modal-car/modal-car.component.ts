@@ -35,7 +35,9 @@ export class ModalCarComponent {
     selectAllText:'seleccionar todo',
     unSelectAllText:'desseleccionar todo',
     enableSearchFilter: true,
-    classes:"myclass custom-class"
+    classes:"dropdownStaffInChargeSettings",
+    position:'bottom',
+    autoPosition:false
   };   
   dropdownBrandSettings = { 
     singleSelection: true, 
@@ -45,7 +47,7 @@ export class ModalCarComponent {
     unSelectAllText:'seleccionar todo',
     addNewButtonText: 'agregar',
     enableSearchFilter: true,
-    classes:"myclass custom-class"
+    classes:"dropdownBrandSettings"
   };   
   dropdownAffectationSettings = { 
     singleSelection: false, 
@@ -55,7 +57,8 @@ export class ModalCarComponent {
     unSelectAllText:'seleccionar todo',
     addNewButtonText: 'agregar',
     enableSearchFilter: true,
-    classes:"drop-affectation"
+    classes:"drop-affectation",
+    autoPosition:false
   }; 
   @Output () closeModal: EventEmitter<boolean> = new EventEmitter();
   constructor(private vehiculeService: VehiculeService,
@@ -93,7 +96,7 @@ export class ModalCarComponent {
   }
 
   onItemSelect(item:any){
-    console.log(item);
+
 }
 
 addAffectations(item:any,rowIndex:number){
@@ -105,7 +108,6 @@ addAffectations(item:any,rowIndex:number){
     Validators.minLength(2)]),
   });
   const control=(this.rowsControls[rowIndex].get('affectations') as FormArray)
-  control.push(action);
 }
 
 OnItemDeSelect(event:any,index:number){

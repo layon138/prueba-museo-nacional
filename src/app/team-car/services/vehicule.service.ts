@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { VehiculeProvider } from '../providers/vehicule.provider';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -16,24 +16,27 @@ export class VehiculeService  implements VehiculeProvider{
     throw new Error('Method not implemented.');
   }
 
-  public  getVehicules(): Promise<ResponseGetVehicules> {
-    throw new Error('Method not implemented.');
+  public async  getVehicules(): Promise<ResponseGetVehicules> {
+    return await firstValueFrom( this.httpService
+      .get<any>(this.urlVehicule+'getVehicle', {},))
   }
 
   public  async addVehicle(vehicule: Vehicle): Promise<ResponseAddVehicle> {
-    const response =await firstValueFrom( this.httpService
+    return await firstValueFrom( this.httpService
       .post<any>(this.urlVehicule+'addVehicle', {}, {
       }))
-
-    return  response;
   }
 
-  public deleteVehicule(): Promise<ResponseDeleteVehicle> {
-    throw new Error('Method not implemented.');
+  public async  deleteVehicule(): Promise<ResponseDeleteVehicle> {
+    return await firstValueFrom( this.httpService
+      .post<any>(this.urlVehicule+'deleteVehicle', {}, {
+      }))
   }
 
-  public updateVehicule(): Promise<ResponseUpdateVehicle> {
-    throw new Error('Method not implemented.');
+  public async  updateVehicule(): Promise<ResponseUpdateVehicle> {
+    return await firstValueFrom( this.httpService
+      .post<any>(this.urlVehicule+'updateVehicle', {}, {
+      }))
   }
 
 }
